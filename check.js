@@ -21,7 +21,7 @@ $(document).ready(function(){
                 
                 alert('У вас ' + correctAnswers + 'правильны' + (bool?'й ответ':'х ответов') );
             } else {
-                var time = timeCurrent - timeStart,
+                var time = (timeCurrent - timeStart) * 1e3,
                     hours,
                     minutes,
                     secs;

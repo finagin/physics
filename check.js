@@ -3,7 +3,7 @@ $(document).ready(function(){
     window.timeLimitHours      = 4;    /* hours */
     window.timeLimitMinutes    = 20;   /* minutes */
         
-        interval    = setInterval(function(){
+    var interval    = setInterval(function(){
             var timeCurrent = (+new Date),
                 timeLimit = (timeLimitHours * 60 + timeLimitMinutes) * 6e4,
                 timerElem;

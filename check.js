@@ -14,7 +14,7 @@ $(document).ready(function(){
                     bool;
                 
                 $('dd input[name=user_answer]').each(function(index, elem){
-                    correctAnswers += ($.md5(elem.value) == $('dd input.cra')[index].value);
+                    correctAnswers += (elem.value == $('dd input.cra')[index].value);
                 });
                 
                 bool = (correctAnswers%10 == 1 && correctAnswers%100 != 11);

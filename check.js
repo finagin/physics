@@ -38,6 +38,11 @@ $(document).ready(function(){
                 }
             }, 1e3);
 
+        $('#send_result').on('click', function(){
+            window.timeLimitHours      = 0;
+            window.timeLimitMinutes    = 0;
+        });
+        
         /*$(window).bind('beforeunload', function(e){
             if(!$.browser.mozilla){
                 return "\
@@ -48,7 +53,4 @@ $(document).ready(function(){
             }
         });*/
     }, 2e3);
-    
-    
-    console.log('xyu');
 });

@@ -37,7 +37,7 @@ $(document).ready(function(){
             }
         }, 1e3);
     
-    $(window).bind('beforeunload', function(e){
+    /*$(window).bind('beforeunload', function(e){
         if(!$.browser.mozilla){
             return "\
                 Внимание!\n\
@@ -45,5 +45,5 @@ $(document).ready(function(){
                 Подумайте еще раз!\n\
             ";
         }
-    });
+    });*/
 });

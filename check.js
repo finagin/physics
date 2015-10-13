@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    window.timeStatr           = (+new Date);
+    window.timeStart           = (+new Date);
     window.timeLimitHours      = 4;    /* hours */
     window.timeLimitMinutes    = 20;   /* minutes */
         

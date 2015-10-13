@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    var timeStatr           = (+new Date),
-        timeLimitHours      = 4,    /* hours */
-        timeLimitMinutes    = 20,   /* minutes */
+    window.timeStatr           = (+new Date);
+    window.timeLimitHours      = 4;    /* hours */
+    window.timeLimitMinutes    = 20;   /* minutes */
         
         interval    = setInterval(function(){
             var timeCurrent = (+new Date),

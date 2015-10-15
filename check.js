@@ -1,56 +1,127 @@
-$(document).ready(function(){
-    setTimeout(function(){
-        window.timeStart           = (+new Date);
-        window.timeLimitHours      = 4;    /* hours */
-        window.timeLimitMinutes    = 20;   /* minutes */
+XM = {
+    timer: {
+        /**
+         * Настройка лимита времени
+         */
+        limit: {
+            /**
+             * Отведённое количество часов
+             */
+            hours: 4,
+            /**
+             * Отведённое количество минут
+             */
+            minutes: 0
+        },
 
-        var interval    = setInterval(function(){
-                var timeCurrent = (+new Date),
-                    timeLimit = (timeLimitHours * 60 + timeLimitMinutes) * 6e4,
-                    timerElem;
+        /**
+         * Timestamp начала отсчёта
+         */
+        start: 0,
 
-                if(timeCurrent - timeStart > timeLimit){
-                    clearInterval(interval);
-                    var correctAnswers = 0,
-                        bool;
-
-                    $('dd input[name=user_answer]').each(function(index, elem){
-                        correctAnswers += (elem.value == $('dd input.cra')[index].value);
-                    });
-
-                    bool = (correctAnswers%10 == 1 && correctAnswers%100 != 11);
-
-                    alert('У вас ' + correctAnswers + 'правильны' + (bool?'й ответ':'х ответов') );
-                } else {
-                    var time = (timeLimit - (timeCurrent - timeStart)) / 1e3,
-                        hours,
-                        minutes,
-                        secs;
-
-                    hours   = Math.floor(time/60/60);
-                    minutes = Math.floor(time/60%60);
-                    secs    = Math.floor(time%60%60);
-
-                    minutes = (minutes  < 10 ? '0':'') + minutes;
-                    secs    = (secs     < 10 ? '0':'') + secs;
-
-                    $('#timer').html(hours + ':' + minutes + ':' + secs);
-                }
-            }, 1e3);
-
-        $('#send_result').on('click', function(){
-            window.timeLimitHours      = 0;
-            window.timeLimitMinutes    = 0;
-        });
+        /**
+         * Пересчёт лимита времени в timestamp
+         *
+         * @param {bool} microsec - Учитывать микросекнды
+         * @returns {number}
+         */
+        getLimit: function (microsec) {
+            return (
+                (
+                    this.limit.hours * 60 + this.limit.minutes
+                ) * 60 * (microsec ? 1e3 : 1)
+            );
+        },
         
-        /*$(window).bind('beforeunload', function(e){
-            if(!$.browser.mozilla){
-                return "\
-                    Внимание!\n\
-                    Вы собираетесь покинуть  страницу.\n\n\
-                    Подумайте еще раз!\n\
-                ";
+        /**
+         * Закончилось ли время
+         *
+         * @returns {boolean}
+         */
+        get isRunning() {
+            return (+new Date) - this.start < this.getLimit(true);
+        },
+
+        /**
+         * Magic function :)
+         *
+         * @returns {string} - H:MM:SS
+         */
+        toString: function () {
+            var time = this.getLimit(true) + this.start - (+new Date),
+                hours,
+                minutes,
+                seconds;
+
+            hours = Math.floor(time / 60 / 60);
+            minutes = Math.floor(time / 60 % 60);
+            seconds = Math.floor(time % 60 % 60);
+
+            minutes = (minutes < 10 ? '0' : '') + minutes;
+            seconds = (seconds < 10 ? '0' : '') + seconds;
+
+            return [hours, minutes, seconds].join(':');
+        }
+    },
+
+    /**
+     * Подсчёт результатов
+     */
+    checkResult: function () {
+        $('dd').each(function (index, elem) {
+            var userAnswer = $(elem).find('input[name=user_answer]').val(),
+                correctAnswer = $(elem).find('input.cra').val();
+
+            if (userAnswer != correctAnswer) {
+                $('#showRsult')
+                    .append($(elem).find('.question_block'))
+                    .append($(elem).find('.answer_block p').eq(userAnswer - 1))
+                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1));
             }
-        });*/
+        })
+    },
+
+    /**
+     * Обработчик setInterval'а
+     */
+    intervalHandler: function () {
+        if (this.isReady) {
+            if (this.timer.isRunning) {
+                /**
+                 * Show time
+                 */
+                console.log(this.timer);
+                //$('#timer')
+                //    .html(this.timer);
+            } else {
+                clearInterval(this.interval);
+
+                this.checkResult();
+            }
+        }
+    },
+
+    /**
+     * Запуск интервальной функции
+     */
+    interval: setInterval(function () {
+        XM.intervalHandler.call(XM);
+    }, 1e3),
+
+    /**
+     * Инициализация
+     */
+    init: function () {
+        this.timer.start = (+new Date);
+        this.isReady = true;
+    }
+};
+
+/**
+ * Запуск через две сукунды после загрузки DOM
+ */
+$(document).ready(function () {
+    setTimeout(function () {
+        XM.init();
     }, 2e3);
 });

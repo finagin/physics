@@ -7,11 +7,11 @@ XM = {
             /**
              * Отведённое количество часов
              */
-            hours: 4,
+            hours: 0,
             /**
              * Отведённое количество минут
              */
-            minutes: 0
+            minutes: 0.1 /* 6 секунд */
         },
 
         /**
@@ -32,7 +32,6 @@ XM = {
                 ) * 60 * (microsec ? 1e3 : 1)
             );
         },
-        
         /**
          * Закончилось ли время
          *
@@ -68,6 +67,8 @@ XM = {
      * Подсчёт результатов
      */
     checkResult: function () {
+        clearInterval(this.interval);
+
         $('dd').each(function (index, elem) {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
                 correctAnswer = $(elem).find('input.cra').val();
@@ -94,8 +95,6 @@ XM = {
                 //$('#timer')
                 //    .html(this.timer);
             } else {
-                clearInterval(this.interval);
-
                 this.checkResult();
             }
         }
@@ -124,4 +123,8 @@ $(document).ready(function () {
     setTimeout(function () {
         XM.init();
     }, 2e3);
+
+    $('#send_result').on('click', function () {
+        XM.checkResult();
+    });
 });

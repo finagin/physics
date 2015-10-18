@@ -83,11 +83,11 @@ XM = {
             if (userAnswer != correctAnswer) {
                 var showRsult = $('#showRsult')
                     .append($(elem).find('.question_block'))
-                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1));
+                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClacc('cor'));
 
                 if (userAnswer) {
                     showRsult
-                        .append($(elem).find('.answer_block p').eq(userAnswer - 1));
+                        .append($(elem).find('.answer_block p').eq(userAnswer - 1).addClacc('er'));
                 }
             } else {
                 totalCorrectAnswer

@@ -47,7 +47,7 @@ XM = {
          * @returns {string} - H:MM:SS
          */
         toString: function () {
-            var time = this.getLimit(true) + this.start - (+new Date),
+            var time = (this.getLimit(true) + this.start - (+new Date)) / 1e3,
                 hours,
                 minutes,
                 seconds;

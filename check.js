@@ -7,11 +7,11 @@ XM = {
             /**
              * Отведённое количество часов
              */
-            hours: 4,
+            hours: 0,
             /**
              * Отведённое количество минут
              */
-            minutes: 0
+            minutes: 0.1
         },
 
         /**
@@ -88,6 +88,9 @@ XM = {
                 if (userAnswer) {
                     showRsult
                         .append($(elem).find('.answer_block p').eq(userAnswer - 1).addClass('er'));
+                } else {
+                    showRsult
+                        .append($('<p>').html('ответ не выбран').addClass('er'));
                 }
             } else {
                 totalCorrectAnswer

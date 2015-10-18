@@ -113,6 +113,9 @@ XM = {
 
         $('.news_list')
             .css({display: 'none'});
+
+        $('#timer')
+            .css({display: 'block'})
     },
 
     /**
@@ -125,7 +128,8 @@ XM = {
                  * Show time
                  */
                 $('#timer')
-                    .html(this.timer + '');
+                    .html(this.timer + '')
+                    .css({display: 'block'});
             } else {
                 this.checkResult();
             }

@@ -7,11 +7,11 @@ XM = {
             /**
              * Отведённое количество часов
              */
-            hours: 0,
+            hours: 4,
             /**
              * Отведённое количество минут
              */
-            minutes: 0.1 /* 6 секунд */
+            minutes: 0
         },
 
         /**
@@ -22,7 +22,7 @@ XM = {
         /**
          * Пересчёт лимита времени в timestamp
          *
-         * @param {bool} microsec - Учитывать микросекнды
+         * @param {boolean} microsec - Учитывать микросекнды
          * @returns {number}
          */
         getLimit: function (microsec) {
@@ -91,9 +91,8 @@ XM = {
                 /**
                  * Show time
                  */
-                console.log(this.timer);
-                //$('#timer')
-                //    .html(this.timer);
+                $('#timer')
+                    .html(this.timer);
             } else {
                 this.checkResult();
             }

@@ -80,6 +80,8 @@ XM = {
             totalQuestion
                 .html((+totalQuestion.val()) + 1);
 
+            console.log(totalQuestion.text());
+
             if (userAnswer != correctAnswer) {
                 var showRsult = $('#showRsult')
                     .append($(elem).find('.question_block'))
@@ -103,7 +105,9 @@ XM = {
                 .html((bool ? ' правильный из ' : ' правильных из '));
 
             $('#showRsult')
-                .append($('<hr>'));
+                .append($('<br>'))
+                .append($('<hr>'))
+                .append($('<br>'));
         });
 
         $('.news_list')

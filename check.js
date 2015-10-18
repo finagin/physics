@@ -73,11 +73,19 @@ XM = {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
                 correctAnswer = $(elem).find('input.cra').val();
 
+            console.log(userAnswer);
+
             if (userAnswer != correctAnswer) {
-                $('#showRsult')
+                var showRsult = $('#showRsult')
                     .append($(elem).find('.question_block'))
-                    .append($(elem).find('.answer_block p').eq(userAnswer - 1))
                     .append($(elem).find('.answer_block p').eq(correctAnswer - 1));
+
+                if (false) {
+                    showRsult
+                        .append($(elem).find('.answer_block p').eq(userAnswer - 1))
+                }
+
+
             }
         })
     },

@@ -80,7 +80,7 @@ XM = {
                     .append($(elem).find('.question_block'))
                     .append($(elem).find('.answer_block p').eq(correctAnswer - 1));
 
-                if (false) {
+                if (userAnswer) {
                     showRsult
                         .append($(elem).find('.answer_block p').eq(userAnswer - 1))
                 }

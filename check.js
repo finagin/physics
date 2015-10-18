@@ -71,7 +71,14 @@ XM = {
 
         $('dd').each(function (index, elem) {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
-                correctAnswer = $(elem).find('input.cra').val();
+                correctAnswer = $(elem).find('input.cra').val(),
+                totalQuestion = $('#showRsult h1 span').eq(0),
+                totalText = $('#showRsult h1 span').eq(1),
+                totalCorrectAnswer = $('#showRsult h1 span').eq(2),
+                bool;
+
+            totalQuestion
+                .html((+totalQuestion.val()) + 1);
 
             if (userAnswer != correctAnswer) {
                 var showRsult = $('#showRsult')
@@ -82,9 +89,15 @@ XM = {
                     showRsult
                         .append($(elem).find('.answer_block p').eq(userAnswer - 1));
                 }
-
-
+            } else {
+                totalCorrectAnswer
+                    .html((+totalCorrectAnswer.val()) + 1);
             }
+
+            bool = ((+totalCorrectAnswer.val())%10 == 1 && (+totalCorrectAnswer.val())%100 != 11);
+
+            totalText
+                .html((bool?' правильный ответ из ':' правильных ответа из '));
         });
 
         $('.news_list')

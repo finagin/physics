@@ -73,8 +73,6 @@ XM = {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
                 correctAnswer = $(elem).find('input.cra').val();
 
-            console.log(userAnswer);
-
             if (userAnswer != correctAnswer) {
                 var showRsult = $('#showRsult')
                     .append($(elem).find('.question_block'))
@@ -82,12 +80,15 @@ XM = {
 
                 if (userAnswer) {
                     showRsult
-                        .append($(elem).find('.answer_block p').eq(userAnswer - 1))
+                        .append($(elem).find('.answer_block p').eq(userAnswer - 1));
                 }
 
 
             }
-        })
+        });
+
+        $('.news_list')
+            .css({display: 'none'});
     },
 
     /**

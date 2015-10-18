@@ -101,6 +101,9 @@ XM = {
 
             totalText
                 .html((bool ? ' правильный из ' : ' правильных из '));
+
+            $('#showRsult')
+                .append($('<hr>'));
         });
 
         $('.news_list')

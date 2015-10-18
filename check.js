@@ -95,9 +95,9 @@ XM = {
             }
 
             totalCorrectAnswer
-                .html((+totalCorrectAnswer.val()));
+                .html((+totalCorrectAnswer.text()));
 
-            bool = ((+totalCorrectAnswer.val()) % 10 == 1 && (+totalCorrectAnswer.val()) % 100 != 11);
+            bool = ((+totalCorrectAnswer.text()) % 10 == 1 && (+totalCorrectAnswer.text()) % 100 != 11);
 
             totalText
                 .html((bool ? ' правильный из ' : ' правильных из '));

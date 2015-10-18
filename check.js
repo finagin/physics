@@ -124,14 +124,19 @@ XM = {
     }
 };
 
-/**
- * Запуск через две сукунды после загрузки DOM
- */
 $(document).ready(function () {
+
+    /**
+     * Запуск через две сукунды после загрузки DOM
+     */
     setTimeout(function () {
         XM.init();
     }, 2e3);
 
+
+    /**
+     * Завершение теста по нажатию на кнопку
+     */
     $('#send_result').on('click', function () {
         XM.checkResult();
     });

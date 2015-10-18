@@ -92,7 +92,7 @@ XM = {
                  * Show time
                  */
                 $('#timer')
-                    .html(this.timer);
+                    .html(this.timer + '');
                 console.log(this.timer);
             } else {
                 this.checkResult();

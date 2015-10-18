@@ -7,11 +7,11 @@ XM = {
             /**
              * Отведённое количество часов
              */
-            hours: 4,
+            hours: 0,
             /**
              * Отведённое количество минут
              */
-            minutes: 0
+            minutes: 0.2
         },
 
         /**
@@ -47,7 +47,7 @@ XM = {
          * @returns {string} - H:MM:SS
          */
         toString: function () {
-            var time = this.getLimit(true) + this.start - (+new Date),
+            var time = (this.getLimit(true) + this.start - (+new Date)) / 1e3,
                 hours,
                 minutes,
                 seconds;
@@ -71,15 +71,48 @@ XM = {
 
         $('dd').each(function (index, elem) {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
-                correctAnswer = $(elem).find('input.cra').val();
+                correctAnswer = $(elem).find('input.cra').val(),
+                totalCorrectAnswer = $('#showRsult h1 span').eq(0),
+                totalText = $('#showRsult h1 span').eq(1),
+                totalQuestion = $('#showRsult h1 span').eq(2),
+                bool;
+
+            totalQuestion
+                .html((+totalQuestion.text()) + 1);
 
             if (userAnswer != correctAnswer) {
-                $('#showRsult')
+                var showRsult = $('#showRsult')
                     .append($(elem).find('.question_block'))
-                    .append($(elem).find('.answer_block p').eq(userAnswer - 1))
-                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1));
+                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
+
+                if (userAnswer) {
+                    showRsult
+                        .append($(elem).find('.answer_block p').eq(userAnswer - 1).addClass('er'));
+                } else {
+                    showRsult
+                        .append($('<p>').html('ответ не выбран').addClass('er'));
+                }
+            } else {
+                totalCorrectAnswer
+                    .html((+totalCorrectAnswer.text()) + 1);
             }
-        })
+
+            totalCorrectAnswer
+                .html((+totalCorrectAnswer.text()));
+
+            bool = ((+totalCorrectAnswer.text()) % 10 == 1 && (+totalCorrectAnswer.text()) % 100 != 11);
+
+            totalText
+                .html((bool ? ' правильный из ' : ' правильных из '));
+
+            $('#showRsult')
+                .append($('<br>'))
+                .append($('<hr>'))
+                .append($('<br>'));
+        });
+
+        $('.news_list')
+            .css({display: 'none'});
     },
 
     /**
@@ -92,7 +125,7 @@ XM = {
                  * Show time
                  */
                 $('#timer')
-                    .html(this.timer);
+                    .html(this.timer + '');
             } else {
                 this.checkResult();
             }
@@ -115,14 +148,19 @@ XM = {
     }
 };
 
-/**
- * Запуск через две сукунды после загрузки DOM
- */
 $(document).ready(function () {
+
+    /**
+     * Запуск через две сукунды после загрузки DOM
+     */
     setTimeout(function () {
         XM.init();
     }, 2e3);
 
+
+    /**
+     * Завершение теста по нажатию на кнопку
+     */
     $('#send_result').on('click', function () {
         XM.checkResult();
     });

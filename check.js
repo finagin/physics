@@ -72,9 +72,9 @@ XM = {
         $('dd').each(function (index, elem) {
             var userAnswer = $(elem).find('input[name=user_answer]').val(),
                 correctAnswer = $(elem).find('input.cra').val(),
-                totalQuestion = $('#showRsult h1 span').eq(0),
+                totalCorrectAnswer = $('#showRsult h1 span').eq(0),
                 totalText = $('#showRsult h1 span').eq(1),
-                totalCorrectAnswer = $('#showRsult h1 span').eq(2),
+                totalQuestion = $('#showRsult h1 span').eq(2),
                 bool;
 
             totalQuestion
@@ -94,10 +94,13 @@ XM = {
                     .html((+totalCorrectAnswer.val()) + 1);
             }
 
-            bool = ((+totalCorrectAnswer.val())%10 == 1 && (+totalCorrectAnswer.val())%100 != 11);
+            totalCorrectAnswer
+                .html((+totalCorrectAnswer.val()));
+
+            bool = ((+totalCorrectAnswer.val()) % 10 == 1 && (+totalCorrectAnswer.val()) % 100 != 11);
 
             totalText
-                .html((bool?' правильный ответ из ':' правильных ответа из '));
+                .html((bool ? ' правильный из ' : ' правильных из '));
         });
 
         $('.news_list')

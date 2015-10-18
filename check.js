@@ -78,9 +78,7 @@ XM = {
                 bool;
 
             totalQuestion
-                .html((+totalQuestion.val()) + 1);
-
-            console.log(totalQuestion.text());
+                .html((+totalQuestion.text()) + 1);
 
             if (userAnswer != correctAnswer) {
                 var showRsult = $('#showRsult')
@@ -93,7 +91,7 @@ XM = {
                 }
             } else {
                 totalCorrectAnswer
-                    .html((+totalCorrectAnswer.val()) + 1);
+                    .html((+totalCorrectAnswer.text()) + 1);
             }
 
             totalCorrectAnswer

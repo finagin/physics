@@ -11,7 +11,7 @@ XM = {
             /**
              * Отведённое количество минут
              */
-            minutes: 0.5
+            minutes: 0.2
         },
 
         /**
@@ -75,7 +75,7 @@ XM = {
                 totalCorrectAnswer = $('#showRsult h1 span').eq(0),
                 totalText = $('#showRsult h1 span').eq(1),
                 totalQuestion = $('#showRsult h1 span').eq(2),
-                totalPoints = $('#showRsult h1 span').eq(3),
+                totalPoints = $('#showRsult h1 span').eq(0),
                 point = $(elem).find('.ball'),
                 bool;
 

@@ -82,10 +82,34 @@ XM = {
             totalQuestion
                 .html((+totalQuestion.text()) + 1);
 
-            if (point.val() == 2) {
-                for (var c = 0, l = correctAnswer.length; c < l; c++) {
-                    console.log(correctAnswer[c])
+
+            var showRsult = $('#showRsult');
+
+            for (var c = 0, l = correctAnswer.length; c < l; c++) {
+                if(correctAnswer[c] == userAnswer[c]){
+                    totalPoints
+                        .html((+totalPoints.text()) + 1);
+                } else {
+                    if(!bool){
+                        showRsult
+                            .append($(elem).find('.question_block'));
+                        bool = true;
+                    }
+
+                    showRsult
+                        .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
+
+                    if(!!userAnswer[c]){
+                        showRsult
+                            .append($('<p>').html('ответ не выбран').addClass('er'));
+                    } else {
+                        showRsult
+                            .append($(elem).find('.answer_block p').eq(userAnswer[c] - 1).addClass('er'));
+                    }
                 }
+            }
+
+            /*if (point.val() == 2) {
             } else {
                 if (userAnswer != correctAnswer) {
                     var showRsult = $('#showRsult')
@@ -112,6 +136,7 @@ XM = {
 
             totalText
                 .html((bool ? ' правильный из ' : ' правильных из '));
+                */
 
             $('#showRsult')
                 .append($('<br>'))

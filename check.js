@@ -112,6 +112,7 @@ XM = {
                 }
             } else {
                 if (userAnswer != correctAnswer) {
+                    bool = true;
                     var showRsult = $('#showRsult')
                         .append($(elem).find('.question_block'))
                         .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));

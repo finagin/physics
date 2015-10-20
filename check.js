@@ -143,6 +143,10 @@ XM = {
             $('#showRsult h1 span')
                 .eq(0)
                 .html(points + ' балл');
+        } else if (points % 10 == 2 || points % 10 == 3 || points % 10 == 4) {
+            $('#showRsult h1 span')
+                .eq(0)
+                .html(points + ' балла');
         } else {
             $('#showRsult h1 span')
                 .eq(0)

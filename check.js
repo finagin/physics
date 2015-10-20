@@ -137,7 +137,7 @@ XM = {
             }
         });
 
-        var points = $('#showRsult h1 span').eq(0).text();
+        var points = +$('#showRsult h1 span').eq(0).text();
 
         if (points % 100 == 1 || (points % 10 == 1 && points != 11)) {
             $('#showRsult h1 span')

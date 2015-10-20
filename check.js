@@ -85,31 +85,30 @@ XM = {
 
             var showRsult = $('#showRsult');
 
-            for (var c = 0, l = correctAnswer.length; c < l; c++) {
-                if(correctAnswer[c] == userAnswer[c]){
-                    totalPoints
-                        .html((+totalPoints.text()) + 1);
-                } else {
-                    if(!bool){
-                        showRsult
-                            .append($(elem).find('.question_block'));
-                        bool = true;
-                    }
-
-                    showRsult
-                        .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
-
-                    if(!!userAnswer[c]){
-                        showRsult
-                            .append($('<p>').html('ответ не выбран').addClass('er'));
+            if (point.val() == 2) {
+                for (var c = 0, l = correctAnswer.length; c < l; c++) {
+                    if (correctAnswer[c] == userAnswer[c]) {
+                        totalPoints
+                            .html((+totalPoints.text()) + 1);
                     } else {
+                        if (!bool) {
+                            showRsult
+                                .append($(elem).find('.question_block'));
+                            bool = true;
+                        }
+
                         showRsult
-                            .append($(elem).find('.answer_block p').eq(userAnswer[c] - 1).addClass('er'));
+                            .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
+
+                        if (!!userAnswer[c]) {
+                            showRsult
+                                .append($('<p>').html('ответ не выбран').addClass('er'));
+                        } else {
+                            showRsult
+                                .append($(elem).find('.answer_block p').eq(userAnswer[c] - 1).addClass('er'));
+                        }
                     }
                 }
-            }
-
-            /*if (point.val() == 2) {
             } else {
                 if (userAnswer != correctAnswer) {
                     var showRsult = $('#showRsult')
@@ -123,32 +122,22 @@ XM = {
                         showRsult
                             .append($('<p>').html('ответ не выбран').addClass('er'));
                     }
-                } else {
-                    totalCorrectAnswer
-                        .html((+totalCorrectAnswer.text()) + 1);
                 }
             }
 
-            totalCorrectAnswer
-                .html((+totalCorrectAnswer.text()));
-
-            bool = ((+totalCorrectAnswer.text()) % 10 == 1 && (+totalCorrectAnswer.text()) % 100 != 11);
-
-            totalText
-                .html((bool ? ' правильный из ' : ' правильных из '));
-                */
-
-            $('#showRsult')
-                .append($('<br>'))
-                .append($('<hr>'))
-                .append($('<br>'));
+            if (bool) {
+                $('#showRsult')
+                    .append($('<br>'))
+                    .append($('<hr>'))
+                    .append($('<br>'));
+            }
         });
 
         $('.news_list')
             .css({display: 'none'});
 
         $('#timer')
-            .css({display: 'block'})
+            .css({display: 'none'})
     },
 
     /**

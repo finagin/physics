@@ -87,6 +87,7 @@ XM = {
 
             if (point.val() == 2) {
                 for (var c = 0, l = correctAnswer.length; c < l; c++) {
+                    console.log(correctAnswer[c], userAnswer[c],correctAnswer[c] == userAnswer[c])
                     if (correctAnswer[c] == userAnswer[c]) {
                         totalPoints
                             .html((+totalPoints.text()) + 1);

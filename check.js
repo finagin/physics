@@ -75,26 +75,34 @@ XM = {
                 totalCorrectAnswer = $('#showRsult h1 span').eq(0),
                 totalText = $('#showRsult h1 span').eq(1),
                 totalQuestion = $('#showRsult h1 span').eq(2),
+                totalPoints = $('#showRsult h1 span').eq(3),
+                point = $(elem).find('.ball'),
                 bool;
 
             totalQuestion
                 .html((+totalQuestion.text()) + 1);
 
-            if (userAnswer != correctAnswer) {
-                var showRsult = $('#showRsult')
-                    .append($(elem).find('.question_block'))
-                    .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
-
-                if (userAnswer) {
-                    showRsult
-                        .append($(elem).find('.answer_block p').eq(userAnswer - 1).addClass('er'));
-                } else {
-                    showRsult
-                        .append($('<p>').html('ответ не выбран').addClass('er'));
+            if (point.val() == 2) {
+                for (var c = 0, l = correctAnswer.length; c < l; c++) {
+                    console.log(correctAnswer[c])
                 }
             } else {
-                totalCorrectAnswer
-                    .html((+totalCorrectAnswer.text()) + 1);
+                if (userAnswer != correctAnswer) {
+                    var showRsult = $('#showRsult')
+                        .append($(elem).find('.question_block'))
+                        .append($(elem).find('.answer_block p').eq(correctAnswer - 1).addClass('cor'));
+
+                    if (userAnswer) {
+                        showRsult
+                            .append($(elem).find('.answer_block p').eq(userAnswer - 1).addClass('er'));
+                    } else {
+                        showRsult
+                            .append($('<p>').html('ответ не выбран').addClass('er'));
+                    }
+                } else {
+                    totalCorrectAnswer
+                        .html((+totalCorrectAnswer.text()) + 1);
+                }
             }
 
             totalCorrectAnswer
